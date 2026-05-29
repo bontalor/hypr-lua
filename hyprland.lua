@@ -31,6 +31,10 @@ hl.monitor({
 local terminal    = "foot"
 local fileManager = "dolphin"
 local menu        = "bash ~/.config/hypr/wmenu.sh"
+local snip        = "bash ~/.config/hypr/snip.sh"       
+local emoji       = "bash ~/.config/hypr/emoji.sh"
+local picker      = "bash ~/.config/hypr/picker.sh"
+local power       = "bash ~/.config/hypr/power.sh"
 
 
 -------------------
@@ -268,12 +272,14 @@ hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.kill())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M",
     hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }), { repeating = true })
 hl.bind(mainMod .. " + A", hl.dsp.window.fullscreen({ mode = "maximized" }), { repeating = true })
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }), { repeating = true })
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(power))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(picker))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(emoji))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(snip))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }), { repeating = true })
@@ -298,8 +304,8 @@ hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "e+1" }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }), { repeating = true })
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
