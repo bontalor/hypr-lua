@@ -17,9 +17,9 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
-    mode     = "2560x1600@120",
+    mode     = "1920x1080@144",
     position = "auto",
-    scale    = "1.6",
+    scale    = "1",
 })
 
 
@@ -262,28 +262,28 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + W", hl.dsp.window.close())
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal), { repeating = true })
+hl.bind(mainMod .. " + W", hl.dsp.window.close(), { repeating = true })
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.kill())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M",
     hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + A", hl.dsp.window.fullscreen({ mode = "maximized" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }), { repeating = true })
+hl.bind(mainMod .. " + A", hl.dsp.window.fullscreen({ mode = "maximized" }), { repeating = true })
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }), { repeating = true })
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }), { repeating = true })
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }), { repeating = true })
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }), { repeating = true })
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }), { repeating = true })
+hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }), { repeating = true })
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }), { repeating = true })
+hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }), { repeating = true })
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }), { repeating = true })
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
