@@ -1,12 +1,21 @@
 ---- MONITORS ----
 
 hl.monitor({
-    output   = "",
+    output   = "DP-5",
     mode     = "1920x1080@144.000",
     position = "auto",
     scale    = "1",
     vrr      = 1,
 })
+
+hl.monitor({
+    output   = "DP-4",
+    mode     = "1600x900@60.000",
+    position = "auto",
+    scale    = "1",
+    vrr      = 0,
+})
+
 
 ---- MY PROGRAMS ----
 
@@ -20,11 +29,9 @@ local power       = "bash ~/.config/hypr/power.sh"
 
 ---- AUTOSTART ----
 
--- hl.on("hyprland.start", function ()
---   hl.exec_cmd(terminal)
---   hl.exec_cmd("nm-applet")
---   hl.exec_cmd("waybar & hyprpaper & firefox")
--- end)
+---hl.on("hyprland.start", function()
+---
+---end)
 
 ---- ENVIRONMENT VARIABLES ----
 
@@ -117,6 +124,13 @@ hl.config({
     },
 })
 
+hl.config({
+    cursor = {
+        default_monitor = "DP-5",
+        min_refresh_rate = 144,
+    },
+})
+
 ---- KEYBINDINGS ----
 
 local mainMod = "SUPER"
@@ -188,6 +202,19 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 ---- WINDOWS AND WORKSPACES ----
+
+-- Pin workspaces to monitors
+for i = 1, 8 do
+    hl.workspace_rule({
+        workspace = tostring(i),
+        monitor   = "DP-5",
+    })
+end
+
+hl.workspace_rule({
+    workspace = "9",
+    monitor   = "DP-4",
+})
 
 hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
