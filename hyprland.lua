@@ -29,9 +29,9 @@ local power       = "bash ~/.config/hypr/power.sh"
 
 ---- AUTOSTART ----
 
----hl.on("hyprland.start", function()
----
----end)
+hl.on("hyprland.start", function()
+    hl.exec_cmd("qs")
+end)
 
 ---- ENVIRONMENT VARIABLES ----
 
