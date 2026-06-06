@@ -1,19 +1,11 @@
 ---- MONITORS ----
 
 hl.monitor({
-    output   = "DP-5",
+    output   = "",
     mode     = "1920x1080@144.000",
     position = "auto",
     scale    = "1",
     vrr      = 1,
-})
-
-hl.monitor({
-    output   = "DP-4",
-    mode     = "1600x900@60.000",
-    position = "auto",
-    scale    = "1",
-    vrr      = 0,
 })
 
 ---- MY PROGRAMS ----
@@ -99,8 +91,9 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+	disable_splash_rendering = true,
+        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
 
