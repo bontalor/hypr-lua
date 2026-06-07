@@ -1,7 +1,7 @@
 ---- MONITORS ----
 
 hl.monitor({
-    output   = "DP-5",
+    output   = "DP-2",
     mode     = "1920x1080@144.000",
     position = "auto",
     scale    = "1",
@@ -9,7 +9,7 @@ hl.monitor({
 })
 
 hl.monitor({
-    output   = "DP-4",
+    output   = "DP-1",
     mode     = "1600x900@60.000",
     position = "auto",
     scale    = "1",
@@ -19,7 +19,7 @@ hl.monitor({
 
 ---- MY PROGRAMS ----
 
-local terminal    = "foot"
+local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "bash ~/.config/hypr/wmenu.sh"
 local snip        = "bash ~/.config/hypr/snip.sh"
@@ -31,12 +31,23 @@ local power       = "bash ~/.config/hypr/power.sh"
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("qs")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("matugen image ~/walls/wall3.jpg --source-color-index 0")
 end)
 
 ---- ENVIRONMENT VARIABLES ----
 
+-- nvidia slop
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+
+-- kde slop
+hl.env("XDG_MENU_PREFIX", "arch-")
+
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 ----- PERMISSIONS -----
 
@@ -58,12 +69,15 @@ hl.config({
         use_nearest_neighbor = false,
     },
     general = {
-        gaps_in          = 5,
-        gaps_out         = 10,
+        gaps_in  = 10,
+        gaps_out = { top = 10, right = 20, bottom = 20, left = 10 },
+        10,
+        20,
+        20,
         border_size      = 0,
         col              = {
-            active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border = { colors = { "#000000" } },
+            inactive_border = { colors = { "#000000" } },
         },
         resize_on_border = false,
         allow_tearing    = true,
@@ -71,15 +85,25 @@ hl.config({
     },
 
     decoration = {
-        rounding         = 10,
         rounding_power   = 0,
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
         shadow           = {
-            enabled = false,
+            enabled = true,
+            color = "0xbf000000",
+            range = 0,
+            sharp = true,
+            offset = { 10, 10, },
         },
         blur             = {
-            enabled = false,
+            enabled = true,
+            size = 8,
+            passes = 3,
+            noise = 0,
+            contrast = 1,
+            brightness = 1,
+            vibrancy = 1,
+            xray = true,
         },
     },
     animations = {
@@ -126,7 +150,7 @@ hl.config({
 
 hl.config({
     cursor = {
-        default_monitor = "DP-5",
+        default_monitor = "DP-2",
         min_refresh_rate = 144,
     },
 })
@@ -207,13 +231,13 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 for i = 1, 8 do
     hl.workspace_rule({
         workspace = tostring(i),
-        monitor   = "DP-5",
+        monitor   = "DP-2",
     })
 end
 
 hl.workspace_rule({
     workspace = "9",
-    monitor   = "DP-4",
+    monitor   = "DP-1",
 })
 
 hl.window_rule({
@@ -239,4 +263,10 @@ hl.window_rule({
 
 hl.window_rule({
     match = { fullscreen = "true" }, immediate = true
+})
+
+hl.layer_rule({
+    match = { namespace = "quickshell:bar" },
+    blur = true,
+    ignore_alpha = 0.75,
 })
